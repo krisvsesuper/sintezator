@@ -1,7 +1,390 @@
-.button {
-  background-color: #1cdf0e;
-  width: 100px;
-  padding: 10px;
+:root {
+  --bg: #1a0b2e;
+  --panel: #24113c;
+  --pink: #ff00ff;
+  --cyan: #00ffff;
+  --white: #f6f1ff;
+  --muted: #9683ad;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 50% 0%, #42205d 0%, transparent 55%), var(--bg);
+  color: var(--white);
+  padding: 24px;
+}
+
+.app {
+  max-width: 1150px;
+  margin: auto;
+}
+
+.header {
   text-align: center;
+  padding: 10px 0 24px;
+}
+
+.logo {
+  font-size: clamp(30px, 6vw, 52px);
+  font-weight: 900;
+  letter-spacing: 7px;
+  color: white;
+  text-shadow:
+    0 0 8px var(--pink),
+    0 0 25px var(--pink);
+}
+
+.subtitle {
+  color: var(--cyan);
+  letter-spacing: 5px;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.panel {
+  background: linear-gradient(145deg, #291542, #190c2c);
+  border: 1px solid #633578;
+  border-radius: 13px;
+  padding: 19px;
+  box-shadow:
+    0 0 20px #ff00ff12,
+    inset 0 0 20px #00ffff08;
+  margin-bottom: 17px;
+}
+
+.section-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--cyan);
+  letter-spacing: 2px;
+  margin-bottom: 17px;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr 1fr;
+  gap: 24px;
+}
+
+.wave-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+
+.wave {
+  background: #180b2b;
+  border: 1px solid #59316e;
+  border-radius: 7px;
+  color: #bba9c9;
+  padding: 12px 5px;
   cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.wave span {
+  display: block;
+  font-size: 23px;
+  color: var(--cyan);
+  margin-bottom: 5px;
+}
+
+.wave.active,
+.wave:hover {
+  border-color: var(--pink);
+  color: white;
+  box-shadow: 0 0 12px #ff00ff55;
+}
+
+.knobs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.knob-wrap {
+  text-align: center;
+}
+
+.knob {
+  width: 61px;
+  height: 61px;
+  border-radius: 50%;
+  margin: 0 auto 9px;
+  position: relative;
+  background: conic-gradient(
+    from 220deg,
+    #ff00ff,
+    #00ffff 270deg,
+    #39244b 270deg
+  );
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 12px #ff00ff33;
+}
+
+.knob::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #4b3062, #180c29);
+  border: 1px solid #79518d;
+}
+
+.knob i {
+  position: absolute;
+  width: 3px;
+  height: 17px;
+  background: var(--cyan);
+  top: 8px;
+  left: calc(50% - 1.5px);
+  transform-origin: 50% 22px;
+  border-radius: 3px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.knob input {
+  position: absolute;
+  inset: -8px;
+  width: 77px;
+  height: 77px;
+  opacity: 0;
+  cursor: ns-resize;
+  z-index: 2;
+}
+
+.knob-label {
+  font-family: Orbitron, sans-serif;
+  font-size: 10px;
+  color: #cbb8dc;
+}
+
+.knob-value {
+  font-size: 13px;
+  color: var(--cyan);
+  margin-top: 3px;
+}
+
+.filter {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.filter .knob {
+  width: 69px;
+  height: 69px;
+}
+
+.filter .knob input {
+  width: 85px;
+  height: 85px;
+}
+
+.scope {
+  width: 100%;
+  height: 145px;
+  background: #100820;
+  border: 1px solid #59316e;
+  border-radius: 8px;
+}
+
+.scope-label {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 2px;
+  gap: 8px;
+}
+
+.keyboard-panel {
+  padding: 18px 13px 15px;
+}
+
+.keyboard-scroll {
+  overflow-x: auto;
+  padding: 8px 5px 15px;
+}
+
+.keyboard {
+  position: relative;
+  display: flex;
+  width: max-content;
+  height: 220px;
+  user-select: none;
+  touch-action: none;
+}
+
+.white-key {
+  width: 68px;
+  height: 215px;
+  background: linear-gradient(90deg, #c9c2d3, #fff 15%, #f1edf8 85%, #b9b1c4);
+  border: 1px solid #9c91ad;
+  border-radius: 0 0 6px 6px;
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
+  box-shadow: 0 5px 5px #080313;
+}
+
+.white-key::after {
+  content: attr(data-note);
+  position: absolute;
+  bottom: 9px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #655879;
+  font-size: 12px;
+}
+
+.white-key.active {
+  background: linear-gradient(#fff, #f3baff);
+  box-shadow:
+    inset 0 -10px 20px #ff00ff99,
+    0 0 18px var(--pink);
+}
+
+.black-key {
+  position: absolute;
+  width: 39px;
+  height: 133px;
+  top: 0;
+  z-index: 3;
+  background: linear-gradient(100deg, #090611, #30213c 50%, #090611);
+  border: 1px solid #59436d;
+  border-radius: 0 0 5px 5px;
+  cursor: pointer;
+  box-shadow: 0 5px 9px #080313;
+  transform: translateX(-50%);
+}
+
+.black-key::after {
+  content: attr(data-note);
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+  color: #a994bc;
+  font-size: 10px;
+}
+
+.black-key.active {
+  background: linear-gradient(#42194d, #ff00ff);
+  box-shadow: 0 0 17px var(--pink);
+}
+
+.bottom {
+  display: flex;
+  justify-content: center;
+  gap: 13px;
+  flex-wrap: wrap;
+}
+
+.action {
+  padding: 13px 23px;
+  border-radius: 6px;
+  border: 1px solid var(--cyan);
+  background: #130b27;
+  color: var(--cyan);
+  font-size: 12px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.action:hover {
+  background: #00ffff18;
+  box-shadow: 0 0 16px #00ffff55;
+}
+
+.action.primary {
+  border-color: var(--pink);
+  color: white;
+  background: linear-gradient(90deg, #7d126f, #451b73);
+}
+
+.action.primary:hover {
+  box-shadow: 0 0 22px #ff00ff88;
+}
+
+.action.record {
+  border-color: #ff386c;
+  color: #ff668c;
+}
+
+.action.record.recording {
+  background: #ff1744;
+  color: white;
+}
+
+.status {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 13px;
+  letter-spacing: 2px;
+}
+
+.status span {
+  color: var(--cyan);
+}
+
+.footer {
+  text-align: center;
+  color: #715b89;
+  font-size: 10px;
+  letter-spacing: 3px;
+  padding: 8px;
+}
+
+@media (max-width: 760px) {
+  body {
+    padding: 12px;
+  }
+
+  .controls {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    padding: 15px;
+  }
+
+  .knobs {
+    max-width: 400px;
+    margin: auto;
+  }
+
+  .filter {
+    max-width: 240px;
+  }
+
+  .white-key {
+    width: 58px;
+  }
+
+  .black-key {
+    width: 34px;
+  }
+}
+
+@media (max-width: 380px) {
+  .logo {
+    letter-spacing: 3px;
+  }
+
+  .action {
+    width: 100%;
+  }
+
+  .scope-label {
+    font-size: 9px;
+  }
 }

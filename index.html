@@ -1,13 +1,97 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
+    <title>NEON SYNTH — Sound Lab 2086</title>
+
+    <link rel="stylesheet" href="./stylesheets/reset.css" />
+    <link rel="stylesheet" href="./stylesheets/fonts.css" />
+    <link rel="stylesheet" href="./stylesheets/style.css" />
+    <link rel="stylesheet" href="./stylesheets/animation.css" />
+
+    <script src="./script.js" defer></script>
   </head>
   <body>
-    Привет!
+    <main class="app">
+      <header class="header">
+        <h1 class="logo">NEON SYNTH</h1>
+        <p class="subtitle">ANALOG FUTURE · SOUND LAB 2086</p>
+      </header>
+
+      <section class="panel">
+        <div class="controls">
+          <div class="control-group">
+            <h2 class="section-title">01 / WAVEFORM</h2>
+            <div class="wave-buttons">
+              <button class="wave active" data-wave="sine">
+                <span>∿</span>SINE
+              </button>
+              <button class="wave" data-wave="square">
+                <span>⊓</span>SQUARE
+              </button>
+              <button class="wave" data-wave="sawtooth">
+                <span>⋰</span>SAWTOOTH
+              </button>
+              <button class="wave" data-wave="triangle">
+                <span>△</span>TRIANGLE
+              </button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <h2 class="section-title">02 / ENVELOPE · ADSR</h2>
+            <div class="knobs" id="adsr"></div>
+          </div>
+
+          <div class="control-group">
+            <h2 class="section-title">03 / FILTER</h2>
+            <div class="filter" id="filters"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 class="section-title">04 / OSCILLOSCOPE — LIVE SIGNAL</h2>
+        <canvas class="scope" id="scope"></canvas>
+        <div class="scope-label">
+          <span>◉ LIVE AUDIO</span>
+          <span id="frequency">440 HZ</span>
+          <span>CH 01</span>
+        </div>
+      </section>
+
+      <section class="panel keyboard-panel">
+        <h2 class="section-title">05 / PERFORMANCE KEYBOARD</h2>
+        <div class="keyboard-scroll">
+          <div class="keyboard" id="keyboard"></div>
+        </div>
+        <div class="scope-label">
+          <span>2 OCTAVES</span>
+          <span>CLICK / HOLD TO PLAY</span>
+          <span>MIDI STYLE</span>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 class="section-title">06 / TRANSPORT</h2>
+
+        <div class="bottom">
+          <button class="action primary" id="demo">▶ PLAY DEMO MELODY</button>
+
+          <button class="action record" id="record">● REC</button>
+
+          <button class="action" id="stop">■ STOP</button>
+        </div>
+
+        <div class="status" id="status">
+          SYSTEM READY <span>●</span> AUDIO ENGINE STANDBY
+        </div>
+      </section>
+
+      <footer class="footer">
+        NEON SYNTH © 2086 · DESIGNED FOR THE FUTURE
+      </footer>
+    </main>
   </body>
 </html>
